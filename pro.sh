@@ -13,7 +13,8 @@ echo \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+cd /home/ubuntu
 git clone https://github.com/Jorge2091/docker-compose
 cd docker-compose
-sudo sudo docker compose up -d
+sudo docker compose up -d
 sudo docker exec -it app5 node seeds/seed.js
