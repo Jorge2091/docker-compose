@@ -1,0 +1,28 @@
+#version: "2"
+services: 
+  mongo3:
+    image: mongo:4.0.4
+    container_name: mongo3
+    restart: always
+    volumes:
+      - ./db/mongod.conf:/etc/mongod.conf
+      #- ./logs:/var/log/mongod/
+      - ./db:/var/lib/mongodb
+      #- ./mongod.service:/lib/systemd/system/mongod.service
+    ports:
+      - "27017:27017"
+
+  app3:
+    container_name: app3
+    restart: always
+    build: .
+    ports:
+      - "80:3000"
+    links:
+      - mongo3
+    environment: 
+      - DB_HOST=mongodb://mongo3:27017/posts
+    # depends_on:
+    #   - mongo3
+    # command: node /usr/local/app/seeds/seed.js
+
