@@ -2,7 +2,7 @@ FROM mongo:latest
 
 WORKDIR /usr/src/db/
 
-COPY ./mongod.conf /etc/
+COPY ./db/mongod.conf /etc/
 
 EXPOSE 27017
 
